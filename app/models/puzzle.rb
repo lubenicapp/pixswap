@@ -37,6 +37,7 @@ class Puzzle < ApplicationRecord
   before_save :default_values
 
   include ActiveModel::Validations
+  include MatrixManipulator
 
   validates :start,
             presence: true,
