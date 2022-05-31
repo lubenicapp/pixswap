@@ -3,25 +3,41 @@
 #
 # This modules contains methods to manipulate
 # a string as a 2 dimensional square matrix
-#
+# and perform transformations on columns and lines like they were simple stacks
 #
 module MatrixManipulator
   MATRIX_SIZE = 5
-
   #
   # extract the i-th column
   #
-  def column(index, arr = current)
-    (0...MATRIX_SIZE).inject('') { |sum, n| sum + arr[(MATRIX_SIZE * n) + index] }
+  def column(index, matrix = current)
+    (0...MATRIX_SIZE).inject('') { |sum, n| sum + matrix[(MATRIX_SIZE * n) + index] }
   end
 
   #
   # extract the i-th line
   #
-  def line(index, arr = current)
-    (0...MATRIX_SIZE).inject('') { |sum, n| sum + arr[(5 * index) + n] }
+  def line(index, matrix = current)
+    (0...MATRIX_SIZE).inject('') { |sum, n| sum + matrix[(5 * index) + n] }
   end
 
+  #
+  # transpose a matrix
+  #
+  def transpose
+    r = ''
+    lines = current.scan(/.{#{MATRIX_SIZE}}/)
+    lines.size.times do |n|
+      lines.each do |l|
+        r += l[n]
+      end
+    end
+    self.current = r
+  end
+
+  #
+  # offsets all elements in the line to the left
+  #
   def shift_line_left(line_index)
     r = ''
     MATRIX_SIZE.times do |i|
@@ -36,6 +52,9 @@ module MatrixManipulator
     self.current = r
   end
 
+  #
+  # offsets all elements in the line to the right
+  #
   def shift_line_right(line_index)
     r = ''
     MATRIX_SIZE.times do |i|
@@ -48,5 +67,14 @@ module MatrixManipulator
       end
     end
     self.current = r
+  end
+
+  #
+  # offsets all elements in the column upward
+  # it calls shift_line between 2 transpositions
+  #
+  #
+  def shift_column_up(column_index)
+
   end
 end

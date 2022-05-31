@@ -64,6 +64,17 @@ describe Puzzle, type: :model do
     end
   end
 
+  describe '#transpose' do
+    subject(:transpose) { puzzle.transpose }
+    let(:attributes) { { current: "12345frere12345frere12345" } }
+    context 'when called' do
+      it 'transpose the matrix' do
+        transpose
+        expect(puzzle.current).to eq("1f1f12r2r23e3e34r4r45e5e5")
+      end
+    end
+  end
+
   describe '#shift_line_left' do
     subject(:shift_line_left) { puzzle.shift_line_left(args) }
     let(:attributes) { { current: "1000000000000000000000000" } }
@@ -81,6 +92,16 @@ describe Puzzle, type: :model do
     it 'offsets the given line by one' do
       shift_line_right
       expect(puzzle.current).to eq("0100000000000000000000000")
+    end
+  end
+
+  xdescribe '#shift_column_up' do
+    subject(:shift_column_up) { puzzle.shift_column_up(args) }
+    let(:attributes) { { current: "1000000000000000000000000" } }
+    let(:args) { 0 }
+    it 'offsets the given column by one' do
+      shift_column_up
+      expect(puzzle.current).to eq("0000000000000000000010000")
     end
   end
 end
