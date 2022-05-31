@@ -4,7 +4,7 @@
 #
 class ValidateFeasibility < ActiveModel::Validator
   def validate(record)
-    unless record.start.nil? || record.end.nil? || record.start.split('').sort == record.end.split('').sort
+    if record.start.nil? || record.end.nil? || record.start.split('').sort != record.end.split('').sort
       record.errors.add :end, "end and start position should have the same tiles"
     end
   end
@@ -15,7 +15,7 @@ end
 #
 class ValidateStringValidity < ActiveModel::Validator
   def validate(record)
-    unless record.start.nil? || record.end.nil? || record.start.split('').uniq.sort == ["0", "1"]
+    if record.start.nil? || record.end.nil? || record.start.split('').uniq.sort != ["0", "1"]
       record.errors.add :start, "string must contains 0 and 1 only"
     end
   end
@@ -26,7 +26,7 @@ end
 #
 class ValidatePositionsAreDifferent < ActiveModel::Validator
   def validate(record)
-    unless record.start == record.end
+    unless record.start != record.end
       record.errors.add :start, "start and end positions must be different"
     end
   end
