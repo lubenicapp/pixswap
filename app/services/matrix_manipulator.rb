@@ -2,8 +2,7 @@
 # This modules contains methods to manipulate
 # a string as a 2 dimensional square matrix
 #
-
-
+#
 module MatrixManipulator
 
   MATRIX_SIZE = 5

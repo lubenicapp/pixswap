@@ -51,3 +51,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "rubocop-rails", "~> 2.14"
