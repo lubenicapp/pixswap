@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 unless @puzzle.nil?
   json.id @puzzle.id
   json.status @puzzle.status
@@ -6,4 +8,3 @@ unless @puzzle.nil?
   json.start @puzzle.start
   json.end @puzzle.end
 end
-

@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 #
 # Validate if the end position is reachable from start
 #  ie : same count of tiles
 #
 class ValidateFeasibility < ActiveModel::Validator
   def validate(record)
-    if record.start.nil? || record.end.nil? || record.start.split('').sort != record.end.split('').sort
-      record.errors.add :end, "end and start position should have the same tiles"
-    end
+    record.errors.add :end, "end and start position should have the same tiles" unless
+      !record.start.nil? && !record.end.nil? && record.start.chars.sort == record.end.chars.sort
   end
 end
 
@@ -15,9 +16,8 @@ end
 #
 class ValidateStringValidity < ActiveModel::Validator
   def validate(record)
-    if record.start.nil? || record.end.nil? || record.start.split('').uniq.sort != ["0", "1"]
-      record.errors.add :start, "string must contains 0 and 1 only"
-    end
+    record.errors.add :start, "string must contains 0 and 1 only" unless
+      !record.start.nil? && !record.end.nil? && record.start.chars.uniq.sort == %w[0 1]
   end
 end
 
@@ -26,14 +26,11 @@ end
 #
 class ValidatePositionsAreDifferent < ActiveModel::Validator
   def validate(record)
-    unless record.start != record.end
-      record.errors.add :start, "start and end positions must be different"
-    end
+    record.errors.add :start, "start and end positions must be different" unless record.start != record.end
   end
 end
 
 class Puzzle < ApplicationRecord
-
   before_save :default_values
 
   include ActiveModel::Validations
@@ -51,8 +48,8 @@ class Puzzle < ApplicationRecord
   validates_with ValidatePositionsAreDifferent
 
   def default_values
-    self.best_score = 0 if self.best_score.nil?
-    self.current = self.start
+    self.best_score = 0 if best_score.nil?
+    self.current = start
     self.status = 'unsolved'
   end
 end
