@@ -1,17 +1,25 @@
+#
+# This modules contains methods to manipulate
+# a string as a 2 dimensional square matrix
+#
+
+
 module MatrixManipulator
 
   MATRIX_SIZE = 5
 
-  def column(col_index, arr = self.current)
-    r = ''
-    MATRIX_SIZE.times { |t| r += arr[5 * t + col_index] }
-    r
+  #
+  # extract the i-th column
+  #
+  def column(i, arr = self.current)
+    (0...MATRIX_SIZE).inject('') { |sum, n| sum + arr[MATRIX_SIZE * n + i] }
   end
 
-  def line(line_index, arr = self.current)
-    r = ''
-    MATRIX_SIZE.times { |t| r += arr[5 * line_index + t] }
-    r
+  #
+  # extract the i-th line
+  #
+  def line(i, arr = self.current)
+    (0...MATRIX_SIZE).inject('') { |sum, n| sum + arr[5 * i + n] }
   end
 
   def shift_line_left(line_index)
