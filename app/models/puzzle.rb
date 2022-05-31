@@ -33,6 +33,9 @@ class ValidatePositionsAreDifferent < ActiveModel::Validator
 end
 
 class Puzzle < ApplicationRecord
+
+  before_save :default_values
+
   include ActiveModel::Validations
 
   validates :start,
@@ -45,4 +48,10 @@ class Puzzle < ApplicationRecord
   validates_with ValidateFeasibility
   validates_with ValidateStringValidity
   validates_with ValidatePositionsAreDifferent
+
+  def default_values
+    self.best_score = 0 if self.best_score.nil?
+    self.current = self.start
+    self.status = 'unsolved'
+  end
 end
