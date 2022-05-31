@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_31_100918) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_31_121451) do
   create_table "puzzles", force: :cascade do |t|
     t.integer "minimum_moves"
     t.integer "best_score"
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_100918) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "move_count"
   end
 
 end
