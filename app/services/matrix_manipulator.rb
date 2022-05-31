@@ -75,6 +75,14 @@ module MatrixManipulator
   #
   #
   def shift_column_up(column_index)
+    transpose
+    shift_line_left(column_index)
+    transpose
+  end
 
+  def shift_column_down(column_index)
+    transpose
+    shift_line_right(column_index)
+    transpose
   end
 end

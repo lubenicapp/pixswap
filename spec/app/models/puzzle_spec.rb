@@ -66,11 +66,11 @@ describe Puzzle, type: :model do
 
   describe '#transpose' do
     subject(:transpose) { puzzle.transpose }
-    let(:attributes) { { current: "12345frere12345frere12345" } }
+    let(:attributes) { { current: "12345frere72345frere12345" } }
     context 'when called' do
       it 'transpose the matrix' do
         transpose
-        expect(puzzle.current).to eq("1f1f12r2r23e3e34r4r45e5e5")
+        expect(puzzle.current).to eq("1f7f12r2r23e3e34r4r45e5e5")
       end
     end
   end
@@ -95,13 +95,32 @@ describe Puzzle, type: :model do
     end
   end
 
-  xdescribe '#shift_column_up' do
+  describe '#shift_column_up' do
     subject(:shift_column_up) { puzzle.shift_column_up(args) }
     let(:attributes) { { current: "1000000000000000000000000" } }
     let(:args) { 0 }
     it 'offsets the given column by one' do
       shift_column_up
       expect(puzzle.current).to eq("0000000000000000000010000")
+    end
+  end
+
+  describe '#shift_column_down' do
+    subject(:shift_column_down) { puzzle.shift_column_down(args) }
+    let(:attributes) { { current: "1111100000000000000000000" } }
+    context 'when called on the first column' do
+      let(:args) { 0 }
+      it 'offsets the given column by one' do
+        shift_column_down
+        expect(puzzle.current).to eq("0111110000000000000000000")
+      end
+    end
+    context 'when called on the third column' do
+      let(:args) { 2 }
+      it 'offsets the given column by one' do
+        shift_column_down
+        expect(puzzle.current).to eq("1101100100000000000000000")
+      end
     end
   end
 end
