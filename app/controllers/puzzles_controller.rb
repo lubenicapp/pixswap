@@ -10,4 +10,9 @@ class PuzzlesController < ApplicationController
     @puzzle = Puzzle.find_by_id([params[:id]])
   end
 
+  def destroy
+    puzzle = Puzzle.find(params[:id])
+    puzzle.destroy
+  end
+
 end
