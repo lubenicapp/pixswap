@@ -8,7 +8,7 @@ class CreatePuzzles < ActiveRecord::Migration[7.0]
 
       # 25 long string of 0 and 1
       t.string :start
-      t.string :end
+      t.string :goal
       t.string :current
 
       t.string :status

@@ -6,8 +6,8 @@
 #
 class ValidateFeasibility < ActiveModel::Validator
   def validate(record)
-    record.errors.add :end, "end and start position should have the same tiles" unless
-      !record.start.nil? && !record.end.nil? && record.start.chars.sort == record.end.chars.sort
+    record.errors.add :goal, "goal and start position should have the same tiles" unless
+      !record.start.nil? && !record.goal.nil? && record.start.chars.sort == record.goal.chars.sort
   end
 end
 
@@ -17,7 +17,7 @@ end
 class ValidateStringValidity < ActiveModel::Validator
   def validate(record)
     record.errors.add :start, "string must contains 0 and 1 only" unless
-      !record.start.nil? && !record.end.nil? && record.start.chars.uniq.sort == %w[0 1]
+      !record.start.nil? && !record.goal.nil? && record.start.chars.uniq.sort == %w[0 1]
   end
 end
 
@@ -26,7 +26,7 @@ end
 #
 class ValidatePositionsAreDifferent < ActiveModel::Validator
   def validate(record)
-    record.errors.add :start, "start and end positions must be different" unless record.start != record.end
+    record.errors.add :start, "start and goal positions must be different" unless record.start != record.goal
   end
 end
 
@@ -39,7 +39,7 @@ class Puzzle < ApplicationRecord
   validates :start,
             presence: true,
             length: { is: 25, allow_nil: false }
-  validates :end,
+  validates :goal,
             presence: true,
             length: { is: 25, allow_nil: false }
 
@@ -51,5 +51,9 @@ class Puzzle < ApplicationRecord
     self.best_score = 0 if best_score.nil?
     self.current = start
     self.status = 'unsolved'
+  end
+
+  def solved?
+    current == self.goal
   end
 end

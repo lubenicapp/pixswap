@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_121451) do
     t.integer "minimum_moves"
     t.integer "best_score"
     t.string "start"
-    t.string "end"
+    t.string "goal"
     t.string "current"
     t.string "status"
     t.datetime "created_at", null: false
