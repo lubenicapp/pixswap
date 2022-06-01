@@ -54,3 +54,5 @@ group :development do
 end
 
 gem "rubocop-rails", "~> 2.14"
+
+gem "mysql2", "~> 0.5.4"

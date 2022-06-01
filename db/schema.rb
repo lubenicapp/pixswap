@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_05_31_121451) do
-  create_table "puzzles", force: :cascade do |t|
+  create_table "puzzles", charset: "utf8mb4", force: :cascade do |t|
     t.integer "minimum_moves"
     t.integer "best_score"
     t.string "start"
