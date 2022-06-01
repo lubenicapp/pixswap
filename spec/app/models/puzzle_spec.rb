@@ -76,21 +76,21 @@ describe Puzzle, type: :model do
   end
 
   describe '#shift_line_left' do
-    subject(:shift_line_left) { puzzle.shift_line_left(args) }
+    subject(:shift_row_left) { puzzle.shift_row_left(args) }
     let(:attributes) { { current: "1000000000000000000000000" } }
     let(:args) { 0 }
     it 'offsets the given line by one' do
-      shift_line_left
+      shift_row_left
       expect(puzzle.current).to eq("0000100000000000000000000")
     end
   end
 
   describe '#shift_line_right' do
-    subject(:shift_line_right) { puzzle.shift_line_right(args) }
+    subject(:shift_row_right) { puzzle.shift_row_right(args) }
     let(:attributes) { { current: "1000000000000000000000000" } }
     let(:args) { 0 }
     it 'offsets the given line by one' do
-      shift_line_right
+      shift_row_right
       expect(puzzle.current).to eq("0100000000000000000000000")
     end
   end

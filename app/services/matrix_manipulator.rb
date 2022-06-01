@@ -7,6 +7,8 @@
 #
 module MatrixManipulator
   MATRIX_SIZE = 5
+
+
   #
   # extract the i-th column
   #
@@ -38,7 +40,7 @@ module MatrixManipulator
   #
   # offsets all elements in the line to the left
   #
-  def shift_line_left(line_index)
+  def shift_row_left(line_index)
     r = ''
     MATRIX_SIZE.times do |i|
       if i == line_index
@@ -55,7 +57,7 @@ module MatrixManipulator
   #
   # offsets all elements in the line to the right
   #
-  def shift_line_right(line_index)
+  def shift_row_right(line_index)
     r = ''
     MATRIX_SIZE.times do |i|
       if i == line_index
@@ -73,16 +75,15 @@ module MatrixManipulator
   # offsets all elements in the column upward
   # it calls shift_line between 2 transpositions
   #
-  #
   def shift_column_up(column_index)
     transpose
-    shift_line_left(column_index)
+    shift_row_left(column_index)
     transpose
   end
 
   def shift_column_down(column_index)
     transpose
-    shift_line_right(column_index)
+    shift_row_right(column_index)
     transpose
   end
 end
