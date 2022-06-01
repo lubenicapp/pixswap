@@ -32,13 +32,15 @@ class PuzzlesController < ApplicationController
     redirect_to controller: 'puzzles', action: 'show', id: puzzle&.id
   end
 
-  def reset
+  def reset_all
     puzzles = Puzzle.all
-    puzzles.each do |p|
-      p.status = 'unsolved'
-      p.move_count = 0
-      p.current = p.start
-      p.save
-    end
+    puzzles.each(&:reset)
+    redirect_to root_url
+  end
+
+  def reset_one
+    puzzle = Puzzle.find_by_id(params[:id])
+    puzzle&.reset
+    redirect_to controller: 'puzzles', action: 'show', id: puzzle&.id
   end
 end

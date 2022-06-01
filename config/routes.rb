@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   #
   # reset all progression
   #
-  post '/reset', to: 'puzzles#reset'
+  post 'puzzles/reset', to: 'puzzles#reset_all'
+  post 'puzzles/:id/reset', to: 'puzzles#reset_one'
 end

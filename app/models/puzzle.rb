@@ -77,6 +77,13 @@ class Puzzle < ApplicationRecord
     current == goal
   end
 
+  def reset
+    self.status = 'unsolved'
+    self.move_count = 0
+    self.current = start
+    save
+  end
+
   def move_params_validation(params)
     %w(up down left right).include?(params[:direction]) && params[:line].to_i.between?(0, MATRIX_SIZE - 1)
   end
