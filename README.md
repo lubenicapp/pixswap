@@ -1,10 +1,10 @@
-# README
+# Pixswap
 
 
 Ruby 3.1.2
 Rails 
 
-## Puzzle Game "Pixswap"
+## How to play
 
 Game consists in solving little puzzles in the lowest number of moves
 
@@ -61,7 +61,13 @@ to reset progression on all puzzles
 
 [post] "puzzles/:id/reset"
 to reset progression on specific puzzle
-____
+
+
+## Data format
+
+
+
+_______________________
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
