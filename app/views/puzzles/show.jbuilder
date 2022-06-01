@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 unless @puzzle.nil?
   json.id @puzzle.id
   json.status @puzzle.status

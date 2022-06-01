@@ -1,25 +1,19 @@
 # frozen_string_literal: true
 
 class PuzzlesController < ApplicationController
+  before_action :find_puzzle, only: [:show, :move, :reset_one]
 
-  before_action :find_puzzle, only: [:show, :destroy, :move, :reset_one]
-
+  # GET /puzzles
   def index
     @puzzles = Puzzle.all
   end
 
-  def create; end
-
+  # GET /puzzles/:id
   def show
     @puzzle
   end
 
-  def destroy
-    @puzzle&.destroy
-  end
-
-  # rescue_from
-
+  # POST /puzzles/:id/move
   def move
     valid_move = @puzzle&.move(params)
     if valid_move
@@ -29,17 +23,20 @@ class PuzzlesController < ApplicationController
     end
   end
 
+  # GET /challenge
   def challenge
     puzzle = Puzzle.where("status == 'unsolved'").first
     redirect_to controller: 'puzzles', action: 'show', id: puzzle&.id
   end
 
+  # POST /puzzles/reset
   def reset_all
     puzzles = Puzzle.all
     puzzles.each(&:reset)
     redirect_to root_url
   end
 
+  # POST /puzzles/:id/reset
   def reset_one
     @puzzle&.reset
     redirect_to controller: 'puzzles', action: 'show', id: @puzzle&.id

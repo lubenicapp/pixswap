@@ -8,7 +8,6 @@
 module MatrixManipulator
   MATRIX_SIZE = 5
 
-
   #
   # extract the i-th column
   #

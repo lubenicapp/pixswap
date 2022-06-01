@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root 'puzzles#index'
 
-  resources :puzzles
+  resources :puzzles, only: [:index, :show]
   post '/puzzles/:id/move', to: 'puzzles#move'
 
   #

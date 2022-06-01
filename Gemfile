@@ -56,3 +56,7 @@ end
 gem "rubocop-rails", "~> 2.14"
 
 gem "mysql2", "~> 0.5.4"
+
+gem "devise", "~> 4.8"
+
+gem "jwt", "~> 2.3"
