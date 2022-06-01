@@ -38,22 +38,46 @@ class Puzzle < ApplicationRecord
 
   validates :start,
             presence: true,
-            length: { is: 25, allow_nil: false }
+            length: { is: MATRIX_SIZE**2, allow_nil: false }
   validates :goal,
             presence: true,
-            length: { is: 25, allow_nil: false }
+            length: { is: MATRIX_SIZE**2, allow_nil: false }
 
   validates_with ValidateFeasibility
   validates_with ValidateStringValidity
   validates_with ValidatePositionsAreDifferent
 
   def default_values
-    self.best_score = 0 if best_score.nil?
-    self.current = start
-    self.status = 'unsolved'
+    self.best_score ||= -1
+    self.current ||= start
+    self.status ||= 'unsolved'
+    self.move_count ||= 0
+  end
+
+  def move(params)
+    move_params_validation(params) || return
+    case params[:direction]
+    when "up"
+      shift_column_up(params[:line].to_i)
+    when "down"
+      shift_column_down(params[:line].to_i)
+    when "left"
+      shift_row_left(params[:line].to_i)
+    when "right"
+      shift_row_right(params[:line].to_i)
+    else
+      return false
+    end
+    self.move_count += 1
+    self.status = 'solved' if solved?
+    true
   end
 
   def solved?
-    current == self.goal
+    current == goal
+  end
+
+  def move_params_validation(params)
+    %w(up down left right).include?(params[:direction]) && params[:line].to_i.between?(0, MATRIX_SIZE - 1)
   end
 end
