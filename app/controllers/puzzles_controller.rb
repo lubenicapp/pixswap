@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class PuzzlesController < ApplicationController
+
+  before_action :find_puzzle, only: [:show, :destroy, :move, :reset_one]
+
   def index
     @puzzles = Puzzle.all
   end
@@ -8,20 +11,19 @@ class PuzzlesController < ApplicationController
   def create; end
 
   def show
-    @puzzle = Puzzle.find_by_id([params[:id]])
+    @puzzle
   end
 
   def destroy
-    puzzle = Puzzle.find_by_id(params[:id])
-    puzzle&.destroy
+    @puzzle&.destroy
   end
 
+  # rescue_from
+
   def move
-    puzzle = Puzzle.find_by_id(params[:id])
-    valid_move = puzzle&.move(params)
+    valid_move = @puzzle&.move(params)
     if valid_move
-      puzzle.save
-      redirect_to puzzle_path
+      @puzzle.save
     else
       redirect_to puzzle_path, status: :unprocessable_entity
     end
@@ -39,8 +41,13 @@ class PuzzlesController < ApplicationController
   end
 
   def reset_one
-    puzzle = Puzzle.find_by_id(params[:id])
-    puzzle&.reset
-    redirect_to controller: 'puzzles', action: 'show', id: puzzle&.id
+    @puzzle&.reset
+    redirect_to controller: 'puzzles', action: 'show', id: @puzzle&.id
+  end
+
+  private
+
+  def find_puzzle
+    @puzzle = Puzzle.find_by_id params[:id]
   end
 end

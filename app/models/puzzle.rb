@@ -55,16 +55,18 @@ class Puzzle < ApplicationRecord
   end
 
   def move(params)
-    move_params_validation(params) || return
+    return unless move_params_validation(params)
+
+    index = params[:line].to_i
     case params[:direction]
     when "up"
-      shift_column_up(params[:line].to_i)
+      shift_column_up(index)
     when "down"
-      shift_column_down(params[:line].to_i)
+      shift_column_down(index)
     when "left"
-      shift_row_left(params[:line].to_i)
+      shift_row_left(index)
     when "right"
-      shift_row_right(params[:line].to_i)
+      shift_row_right(index)
     else
       return false
     end

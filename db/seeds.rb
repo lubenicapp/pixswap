@@ -74,7 +74,7 @@ puzzle.goal = '00100'\
               '00100'\
               '00100'\
               '10000'\
-              '11000'\
+              '11000'
 puzzle.minimum_moves = 5
 puzzle.save
 
@@ -88,7 +88,7 @@ puzzle.goal = '00000'\
               '00000'\
               '00100'\
               '01110'\
-              '11011'\
+              '11011'
 puzzle.minimum_moves = 5
 puzzle.save
 
@@ -102,7 +102,7 @@ puzzle.goal = '00000'\
               '00000'\
               '00100'\
               '01110'\
-              '11011'\
+              '11011'
 puzzle.minimum_moves = 5
 puzzle.save
 
