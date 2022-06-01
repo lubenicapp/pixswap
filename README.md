@@ -56,7 +56,11 @@ pass in the parameters
 direction: ("up", "left", "down", "right")
 line: (the number of the column or row to move [0..4])
 
+[post] "/puzzles/reset"
+to reset progression on all puzzles
 
+[post] "puzzles/:id/reset"
+to reset progression on specific puzzle
 ____
 
 This README would normally document whatever steps are necessary to get the
