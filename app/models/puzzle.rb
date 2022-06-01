@@ -55,7 +55,7 @@ class Puzzle < ApplicationRecord
   end
 
   def move(params)
-    return unless move_params_validation(params)
+    raise IllegalMoveException unless move_params_validation(params)
 
     index = params[:line].to_i
     case params[:direction]
@@ -89,4 +89,7 @@ class Puzzle < ApplicationRecord
   def move_params_validation(params)
     %w(up down left right).include?(params[:direction]) && params[:line].to_i.between?(0, MATRIX_SIZE - 1)
   end
+end
+
+class IllegalMoveException < StandardError
 end

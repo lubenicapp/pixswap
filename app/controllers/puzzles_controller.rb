@@ -15,12 +15,10 @@ class PuzzlesController < ApplicationController
 
   # POST /puzzles/:id/move
   def move
-    valid_move = @puzzle&.move(params)
-    if valid_move
-      @puzzle.save
-    else
-      redirect_to puzzle_path, status: :unprocessable_entity
-    end
+    @puzzle&.move(params)
+    @puzzle.save
+  rescue IllegalMoveException
+    head :unprocessable_entity
   end
 
   # GET /challenge
@@ -45,6 +43,6 @@ class PuzzlesController < ApplicationController
   private
 
   def find_puzzle
-    @puzzle = Puzzle.find_by_id params[:id]
+    @puzzle = Puzzle.find params[:id]
   end
 end

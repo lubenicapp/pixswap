@@ -11,12 +11,6 @@ RSpec.describe "Puzzles", type: :request do
     Puzzle.last.delete
   end
 
-  describe "GET /index" do
-    it "returns http success" do
-      get "/puzzles/index"
-      expect(response).to have_http_status(:success)
-    end
-  end
 
   describe "POST /puzzles/:id/move" do
     context "with valid parameters" do
