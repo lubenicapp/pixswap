@@ -31,3 +31,51 @@ puzzle.start = "0000000011000000100001000"
 puzzle.goal = "0100001110000000000000000"
 puzzle.minimum_moves = 3
 puzzle.save
+
+puzzle = Puzzle.new
+puzzle.start =  '00000'\
+                '00100'\
+                '00100'\
+                '00011'\
+                '00011'
+
+puzzle.goal = '00100'\
+              '00100'\
+              '00100'\
+              '10000'\
+              '11000'\
+
+puzzle.minimum_moves = 5
+puzzle.save
+
+puzzle = Puzzle.new
+puzzle.start =  '00000'\
+                '00000'\
+                '01110'\
+                '01010'\
+                '01110'
+
+puzzle.goal = '00000'\
+              '00000'\
+              '00100'\
+              '01110'\
+              '11011'\
+
+puzzle.minimum_moves = 5
+puzzle.save
+
+puzzle = Puzzle.new
+puzzle.start =  '00000'\
+                '00000'\
+                '01110'\
+                '01010'\
+                '01110'
+
+puzzle.goal = '00000'\
+              '00000'\
+              '00100'\
+              '01110'\
+              '11011'\
+
+puzzle.minimum_moves = 5
+puzzle.save
