@@ -2,7 +2,6 @@
 
 class PuzzlesController < ApplicationController
   before_action :find_puzzle, only: [:show, :move, :reset_one]
-
   # GET /puzzles
   def index
     @puzzles = Puzzle.all

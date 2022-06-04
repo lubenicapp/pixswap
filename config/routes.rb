@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   root 'puzzles#index'
 
   resources :puzzles, only: [:index, :show] do
@@ -14,5 +15,7 @@ Rails.application.routes.draw do
   end
 
   get '/challenge', to: 'puzzles#challenge'
+
+  post '/sign_in', to: 'tokens#sign_in'
 
 end
