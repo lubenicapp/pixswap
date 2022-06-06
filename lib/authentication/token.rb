@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Jwt
+module Authentication
   class Token
     @@secret_key = ENV.fetch('SECRET_KEY_BASE', nil)
     @@expiration = ENV.fetch('JWT_EXPIRATION_HOUR', nil)

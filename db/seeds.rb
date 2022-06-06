@@ -10,7 +10,7 @@
 
 joe = User.new
 joe.email = "joe@taxi.fr"
-joe.encrypted_password = User.new(password: "123456").encrypted_password
+joe.password = "123456"
 joe.save
 
 ben = User.new
