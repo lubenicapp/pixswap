@@ -49,9 +49,6 @@ class Puzzle < ApplicationRecord
 
   def default_values
     self.best_score ||= -1
-    self.current ||= start
-    self.status ||= 'unsolved'
-    self.move_count ||= 0
   end
 
   def move(params)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TokensController < ApplicationController
-  before_action :authenticate_user!, except: [:token_sign_in]
+  before_action :authenticate_user!
 
   def sign_in
     payload = { 'email' => current_user.email, 'token_revision' => current_user.token_revision }
