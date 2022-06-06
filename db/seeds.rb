@@ -10,12 +10,12 @@
 
 joe = User.new
 joe.email = "joe@taxi.fr"
-joe.encrypted_password = User.new(:password => "123456").encrypted_password
+joe.encrypted_password = User.new(password: "123456").encrypted_password
 joe.save
 
 ben = User.new
 ben.email = "ben@beton.fr"
-ben.encrypted_password = "123456"
+ben.password = "123456"
 ben.save
 
 puzzle = Puzzle.new
