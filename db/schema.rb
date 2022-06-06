@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_06_083034) do
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "token_revision"
+    t.integer "token_revision", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   get '/challenge', to: 'puzzles#challenge'
 
   post '/sign_in', to: 'tokens#sign_in'
-  post '/token_sign_in', to: 'tokens#sign_in'
+  post '/token_sign_in', to: 'tokens#token_sign_in'
 end

@@ -7,13 +7,13 @@ module Authentication
 
     def self.encode(payload)
       JWT.encode(
-        payload.merge('exp' => @@expiration),
+        payload.merge('exp' => @@expiration.to_i.hours.from_now.to_i),
         @@secret_key
       )
     end
 
     def self.decode(token)
-      decoded_token = JWT.decode(token, @@secret_key).first
+      decoded_token = JWT.decode(token, @@secret_key)
     rescue StandardError
       nil
     end
