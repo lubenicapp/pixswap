@@ -24,6 +24,8 @@ module Pixswap
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.autoload_paths << File.join(Rails.root, 'lib')
+    config.eager_load_paths << File.join(Rails.root, 'lib')
 
     # Configuration for the application, engines, and railties goes here.
     #
