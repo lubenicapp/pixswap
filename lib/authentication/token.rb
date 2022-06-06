@@ -12,10 +12,8 @@ module Authentication
       )
     end
 
-    def self.decode(token)
-      decoded_token = JWT.decode(token, @@secret_key)
-    rescue StandardError
-      nil
+    def self.decode(raw_token)
+      decoded_token = JWT.decode(raw_token, @@secret_key)
     end
   end
 end

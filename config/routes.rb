@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 
   post '/sign_in', to: 'tokens#sign_in'
   post '/token_sign_in', to: 'tokens#token_sign_in'
+  post '/sign_out', to: 'tokens#sign_out'
 end
