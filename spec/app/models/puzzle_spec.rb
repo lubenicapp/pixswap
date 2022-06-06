@@ -25,6 +25,7 @@ describe Puzzle, type: :model do
           status: "unsolved" }
       }
       it { is_expected.to be false }
+
     end
 
     context 'with invalid characters' do
