@@ -14,10 +14,4 @@ class TokensController < ApplicationController
     user.save
     head 204
   end
-
-  def token_sign_in
-    raw_token = request.headers['Authorization'].split(' ')[1]
-    puts "decoded #{Authentication::Token.decode(raw_token)}"
-    head 201
-  end
 end

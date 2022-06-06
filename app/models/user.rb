@@ -12,5 +12,4 @@ class User < ApplicationRecord
   def self.find_by_payload(claims)
     find_by(email: claims['sub'], token_revision: claims['revision'])
   end
-
 end

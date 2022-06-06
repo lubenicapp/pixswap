@@ -18,7 +18,7 @@ RSpec.describe "Puzzles", type: :request do
 
   describe "POST /puzzles/:id/move" do
     context "with valid parameters as a valid user" do
-      before { login_as user, score: :user }
+      before { login_as user }
       it "returns a success status code" do
         post "/puzzles/1/move", params: { direction: "up", line: "1" }
         expect(response).to have_http_status(:success)
@@ -26,7 +26,7 @@ RSpec.describe "Puzzles", type: :request do
     end
 
     context "with invalid parameters as a valid user" do
-      before { login_as user, score: :user }
+      before { login_as user }
       it "returns a 422 status code" do
         post "/puzzles/1/move"
         expect(response).to have_http_status(:unprocessable_entity)
@@ -40,5 +40,4 @@ RSpec.describe "Puzzles", type: :request do
       end
     end
   end
-
 end
