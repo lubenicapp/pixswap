@@ -3,6 +3,7 @@
 ## How to play
 
 Game consists in solving little puzzles in the lowest number of moves
+You can view the puzzles as 2D rubik's cubes
 
 You are given a start grid and a goal grid like :
 
@@ -48,8 +49,32 @@ shift_down:
 
 ____
 
-send requests to play
+## Sign in
 
+You must be identified to play. One dummy used is registered in the seed.rb
+
+email "joe@taxi.fr"
+password "123456"
+
+you can request an access token at "/sign_in"
+
+``` 
+curl -u "joe@taxi.fr:123456" 127.0.0.1:3000/sign_in
+
+# { token : "bla" }
+
+```
+
+then use it in the Autorization header
+
+``` 
+    curl -X POST "/challenge" -H "Authorization: Bearer bla"
+```
+
+
+## Controls to play
+### (you must be logged in)
+\
 to see the next unsolved puzzle :
 ``` 
 [get] /challenge
@@ -76,9 +101,6 @@ to reset progression on specific puzzle:
 ```
 
 
-
-
-
 _______________________
 
 # Run the app
@@ -91,21 +113,16 @@ install gems
 ```bash
   bundle install 
 ```
-
-||
-
+\
 start the database
-
-```bash
+```
  docker-compose up -d
 ```
 populate the database
 ``` bash
  rails db:migrate && rails db:seed
 ```
-
-||
-
+\
 run the server
 ```bash
   rails server 

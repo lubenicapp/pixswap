@@ -16,15 +16,15 @@ module Devise
       def authenticate!
         return fail! unless jwt_token
 
-        found_user = User.find_by_payload(jwt_token.payload)
-
+        puts jwt_token
+        found_user = User.find_by_payload(jwt_token[0]['payload'])
         success! found_user
       end
 
       private
 
       def jwt_token
-        @jwt_token ||= Authentication::Token.decode(token: raw_token)
+        Authentication::Token.decode(raw_token)
       end
 
       def strategy

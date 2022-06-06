@@ -10,6 +10,6 @@ class User < ApplicationRecord
             uniqueness: true
 
   def self.find_by_payload(claims)
-    find_by(email: claims['sub'], token_revision: claims['revision'])
+    find_by(email: claims['email'], token_revision: claims['token_revision'])
   end
 end

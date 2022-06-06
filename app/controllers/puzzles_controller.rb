@@ -2,7 +2,7 @@
 
 class PuzzlesController < ApplicationController
   before_action :find_puzzle, only: [:show, :move, :reset_one]
-  before_action :authenticate_user!, only: [:move, :reset_one, :reset_all]
+  before_action :authenticate_user!, only: [:challenge, :move, :reset_one, :reset_all]
   # GET /puzzles
   def index
     @puzzles = Puzzle.all
@@ -23,21 +23,20 @@ class PuzzlesController < ApplicationController
 
   # GET /challenge
   def challenge
-    puzzle = Puzzle.where("status == 'unsolved'").first
-    redirect_to controller: 'puzzles', action: 'show', id: puzzle&.id
+    @puzzle = Puzzle.where("status = 'unsolved'").first
   end
 
   # POST /puzzles/reset
   def reset_all
     puzzles = Puzzle.all
     puzzles.each(&:reset)
-    redirect_to root_url
+    head 204
   end
 
   # POST /puzzles/:id/reset
   def reset_one
     @puzzle&.reset
-    redirect_to controller: 'puzzles', action: 'show', id: @puzzle&.id
+    head 204
   end
 
   private
