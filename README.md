@@ -1,5 +1,10 @@
 # Pixswap
 
+Small project to get used to rails fundamentals
+This is a api that provide puzzles to solves to a signed in used.
+Game state is shared between all user because it was enough for the scope of the project
+
+
 ## How to play
 
 Game consists in solving little puzzles in the lowest number of moves
@@ -109,7 +114,7 @@ to reset progression on specific puzzle:
 
 _______________________
 
-# Run the app
+## Run the app
 
 This app runs on 
 - Rails 7.0.3
@@ -133,5 +138,4 @@ run the server
 ```bash
   rails server 
 ```
-
 

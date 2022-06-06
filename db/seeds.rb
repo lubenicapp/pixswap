@@ -13,10 +13,6 @@ joe.email = "joe@taxi.fr"
 joe.password = "123456"
 joe.save
 
-ben = User.new
-ben.email = "ben@beton.fr"
-ben.password = "123456"
-ben.save
 
 puzzle = Puzzle.new
 puzzle.start =  '00000'\
