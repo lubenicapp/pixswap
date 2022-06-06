@@ -3,13 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe "Tokens", type: :request do
+  DatabaseCleaner.strategy = :transaction
   include Warden::Test::Helpers
   before(:each) do
+    DatabaseCleaner.start
     User.create(email: Digest::SHA256.hexdigest(Time.now.getutc.to_s), password: "123456")
   end
 
   after(:each) do
-    User.last.delete
+    DatabaseCleaner.clean
   end
 
   let(:user) { User.last }

@@ -3,15 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe "Puzzles", type: :request do
+  DatabaseCleaner.strategy = :transaction
   include Warden::Test::Helpers
   before(:each) do
+    DatabaseCleaner.start
     Puzzle.create(start: '1000000000000000000000000', goal: '0100000000000000000000000')
     User.create(email: Digest::SHA256.hexdigest(Time.now.getutc.to_s), password: "123456")
   end
 
   after(:each) do
-    Puzzle.last.delete
-    User.last.delete
+    DatabaseCleaner.clean
   end
 
   let(:user) { User.last }
