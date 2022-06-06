@@ -78,11 +78,17 @@ then use it in the Autorization header
 to see the next unsolved puzzle :
 ``` 
 [get] /challenge
+
+# curl -X GET 127.0.0.1:3000/challenge -H "Autorization: Bearer #{token}"
+# curl -X GET 127.0.0.1:3000/challenge -u "joe@taxi.fr:123456"
 ```
 \
 to play a move:
 ``` 
-[post] /puzzle/id/:move/
+[post] /puzzle/:id/move/
+
+# curl -X POST -u "joe@taxi.fr:123456" 127.0.0.1:3000/puzzles/1/move?direction=up&line=0
+
 ```
 with params:
 ``` 
