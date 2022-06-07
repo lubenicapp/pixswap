@@ -8,7 +8,7 @@ describe Puzzle, type: :model do
   let(:attributes) {
     { start: "1111100000111110000011111",
       goal: "1111100000111110010011011",
-      status: "unsolved" }
+    }
   }
 
   describe '#valid?' do
@@ -22,7 +22,7 @@ describe Puzzle, type: :model do
       let(:attributes) {
         { start: "1111100000111110000011111",
           goal: "1111100000111110000011111",
-          status: "unsolved" }
+        }
       }
       it { is_expected.to be false }
     end
@@ -31,7 +31,7 @@ describe Puzzle, type: :model do
       let(:attributes) {
         { start: "00000000000000000000000001",
           goal: "X000000000000000000000000",
-          status: "unsolved" }
+        }
       }
       it { is_expected.to be false }
     end
@@ -40,7 +40,7 @@ describe Puzzle, type: :model do
       let(:attributes) {
         { start: "01",
           goal: "1111111111111111111111111111000000000000000000000000",
-          status: "unsolved" }
+        }
       }
       it { is_expected.to be false }
     end
@@ -97,12 +97,52 @@ describe Puzzle, type: :model do
 
   describe '#shift_column_up' do
     subject(:shift_column_up) { puzzle.shift_column_up(args) }
-    let(:attributes) { { current: "1000000000000000000000000" } }
-    let(:args) { 0 }
-    it 'offsets the given column by one' do
-      shift_column_up
-      expect(puzzle.current).to eq("0000000000000000000010000")
+
+    context "when called on first column" do
+      let(:attributes) { { current: "1000000000000000000000000" } }
+      let(:args) { 0 }
+      it 'offsets the given column by one' do
+        shift_column_up
+        expect(puzzle.current).to eq("0000000000000000000010000")
+      end
     end
+
+    context "when called on second column" do
+      let(:attributes) { { current: "0100000000000000000000000" } }
+      let(:args) { 1 }
+      it 'offsets the given column by one' do
+        shift_column_up
+        expect(puzzle.current).to eq("0000000000000000000001000")
+      end
+    end
+
+    context "when called on third column" do
+      let(:attributes) { { current: "0010000000000000000000000" } }
+      let(:args) { 2 }
+      it 'offsets the given column by one' do
+        shift_column_up
+        expect(puzzle.current).to eq("0000000000000000000000100")
+      end
+    end
+
+    context "when called on fourth column" do
+      let(:attributes) { { current: "0001000010000000000000000" } }
+      let(:args) { 3 }
+      it 'offsets the given column by one' do
+        shift_column_up
+        expect(puzzle.current).to eq("0001000000000000000000010")
+      end
+    end
+
+    context "when called on fifth column" do
+      let(:attributes) { { current: "0000100001000000000000000" } }
+      let(:args) { 4 }
+      it 'offsets the given column by one' do
+        shift_column_up
+        expect(puzzle.current).to eq("0000100000000000000000001")
+      end
+    end
+
   end
 
   describe '#shift_column_down' do
@@ -115,6 +155,15 @@ describe Puzzle, type: :model do
         expect(puzzle.current).to eq("0111110000000000000000000")
       end
     end
+
+    context 'when called on the second column' do
+      let(:args) { 1 }
+      it 'offsets the given column by one' do
+        shift_column_down
+        expect(puzzle.current).to eq("1011101000000000000000000")
+      end
+    end
+
     context 'when called on the third column' do
       let(:args) { 2 }
       it 'offsets the given column by one' do

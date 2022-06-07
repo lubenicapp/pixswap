@@ -13,7 +13,6 @@ joe.email = "joe@taxi.fr"
 joe.password = "123456"
 joe.save
 
-
 puzzle = Puzzle.new
 puzzle.start =  '00000'\
                 '00000'\
@@ -237,3 +236,18 @@ puzzle.goal = '00001'\
               '00100'
 puzzle.minimum_moves = 8
 puzzle.save
+
+puzzle = Puzzle.new
+puzzle.start =  '00000'\
+                '00111'\
+                '01000'\
+                '10000'\
+                '10000'
+puzzle.goal = '00001'\
+              '00000'\
+              '01010'\
+              '01010'\
+              '10100'
+puzzle.minimum_moves = 6
+puzzle.save
+
