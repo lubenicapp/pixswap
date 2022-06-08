@@ -8,3 +8,21 @@ service:
       - type: mariadb
         name: database
       - name: http-server
+    parameters:
+      - name: secret-key-base
+        type: literal
+        validates: /\A[a-f0-9]{128}\z/
+        example: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        generate: expression
+        from: /\A[0-9a-f]{128}\z/
+      - name: jwt-expiration-hour
+        type: integer
+        value: 96
+        example: 96
+    bindings:
+      - name: SECRET_KEY_BASE
+        type: env
+        value: ${parameters:secret-key-base}
+      - name: JWT_EXPIRATION_HOUR
+        type: env
+        value: ${parameters:jwt-expiration-hour}
