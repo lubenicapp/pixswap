@@ -1,0 +1,10 @@
+---
+component:
+  type: api
+  name: api
+service:
+  manifest:
+    plugins:
+      - type: mariadb
+        name: database
+      - name: http-server

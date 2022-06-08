@@ -1,0 +1,21 @@
+---
+include:
+  - project: platform/gitlab-ci-templates
+    ref: v0.2-stable
+    file: files/templates/monorepo.yml
+
+api:spec:
+  extends:
+    - .ruby-test
+    - .image-web-ruby31-fullstaq
+  script:
+    - rake spec
+  variables:
+    PROJECT_CWD: src/api
+    PROJECT_COMPONENTS: api
+
+api:publish:
+  extends: .ruby-publish
+  variables:
+    PROJECT_CWD: src/api
+    PROJECT_COMPONENTS: api
