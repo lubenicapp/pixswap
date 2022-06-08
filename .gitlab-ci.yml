@@ -8,11 +8,15 @@ api:spec:
   extends:
     - .ruby-test
     - .image-web-ruby31-fullstaq
+    - .service-backend-mariadb
   script:
+    - rake db:migrate
+    - rake db:seed
     - rake spec
   variables:
     PROJECT_CWD: src/api
     PROJECT_COMPONENTS: api
+    DATABASE_URL: ${MYSQL_URL}
 
 api:publish:
   extends: .ruby-publish
