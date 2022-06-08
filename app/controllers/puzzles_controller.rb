@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PuzzlesController < ApplicationController
+  include RackSessionFix
   before_action :find_puzzle, only: [:show, :move, :reset_one]
   before_action :authenticate_user!, only: [:challenge, :move, :reset_one, :reset_all]
   # GET /puzzles
