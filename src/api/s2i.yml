@@ -1,0 +1,5 @@
+---
+builder: registry.si.perfect-memory.com/openshift/s2i-perfectimage/web-ruby31-fullstaq:1-latest
+process: toto
+env:
+  RAILS_ENV: production
