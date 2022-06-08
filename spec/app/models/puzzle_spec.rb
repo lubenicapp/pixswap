@@ -7,8 +7,7 @@ describe Puzzle, type: :model do
 
   let(:attributes) {
     { start: "1111100000111110000011111",
-      goal: "1111100000111110010011011",
-    }
+      goal: "1111100000111110010011011", }
   }
 
   describe '#valid?' do
@@ -21,8 +20,7 @@ describe Puzzle, type: :model do
     context 'with identical positions' do
       let(:attributes) {
         { start: "1111100000111110000011111",
-          goal: "1111100000111110000011111",
-        }
+          goal: "1111100000111110000011111",  }
       }
       it { is_expected.to be false }
     end
@@ -30,8 +28,7 @@ describe Puzzle, type: :model do
     context 'with invalid characters' do
       let(:attributes) {
         { start: "00000000000000000000000001",
-          goal: "X000000000000000000000000",
-        }
+          goal: "X000000000000000000000000",  }
       }
       it { is_expected.to be false }
     end
@@ -39,8 +36,7 @@ describe Puzzle, type: :model do
     context 'with invalid size' do
       let(:attributes) {
         { start: "01",
-          goal: "1111111111111111111111111111000000000000000000000000",
-        }
+          goal: "1111111111111111111111111111000000000000000000000000", }
       }
       it { is_expected.to be false }
     end
@@ -142,7 +138,6 @@ describe Puzzle, type: :model do
         expect(puzzle.current).to eq("0000100000000000000000001")
       end
     end
-
   end
 
   describe '#shift_column_down' do

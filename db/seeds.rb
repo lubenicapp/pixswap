@@ -250,4 +250,3 @@ puzzle.goal = '00001'\
               '10100'
 puzzle.minimum_moves = 6
 puzzle.save
-
