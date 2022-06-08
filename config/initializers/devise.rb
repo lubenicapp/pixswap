@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+class JsonFailureApp < Devise::FailureApp
+  def respond
+    self.status = 401
+    self.content_type = 'json'
+    self.response_body = '{"error" : "authentication error"}'
+  end
+end
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -278,6 +285,7 @@ Devise.setup do |config|
   # change the failure app, you can configure them inside the config.warden block.
   #
   config.warden do |manager|
+    manager.failure_app = JsonFailureApp
     manager.strategies.add(:jwt_authenticatable_strategy, Devise::Strategies::JwtAuthenticatable)
     manager.default_strategies(scope: :user).unshift :jwt_authenticatable_strategy
   end
