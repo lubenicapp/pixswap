@@ -20,6 +20,9 @@ api:spec:
 
 api:publish:
   extends: .ruby-publish
+  before_script:
+    - !reference [.ruby-publish, before_script]
+    - gem install bundler -v '~> 2.3'
   variables:
     PROJECT_CWD: src/api
     PROJECT_COMPONENTS: api
