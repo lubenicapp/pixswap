@@ -32,7 +32,6 @@ service:
         value: ${parameters:jwt-expiration-hour}
       - name: puzzle-base
         type: migration
-        command: rails db:migrate && rails db:seed
-        data_version: '1.0.1'
+        command: bundle exec rake db:migrate && bundle exec rake db:seed
         env:
           DATABASE_URL: ${parameters:database.mariadb:url[admin]}

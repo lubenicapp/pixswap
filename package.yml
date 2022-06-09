@@ -15,4 +15,4 @@ application:
       bindings:
         - name: puzzle-base
           type: migration
-          data_version: '1.0.1'
+          data_version: '1.0.2'
