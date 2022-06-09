@@ -10,6 +10,8 @@ service:
       - name: http-server
         options:
           routes: ['pixswap-api']
+      - name: common
+        source: application
     parameters:
       - name: secret-key-base
         type: literal
@@ -21,9 +23,6 @@ service:
         type: integer
         value: 96
         example: 96
-      - name: common
-        type: migration
-        source: application
     bindings:
       - name: SECRET_KEY_BASE
         type: env
@@ -34,5 +33,6 @@ service:
       - name: puzzle-base
         type: migration
         command: rails db:migrate && rails db:seed
+        data_version: '1.0.1'
         env:
           DATABASE_URL: \${parameters:database.mariadb:url[admin]}
