@@ -7,3 +7,12 @@ package:
   dependencies: []
 application:
   use_store: true
+  plugins:
+    - name: common
+      plugins:
+        - name: database
+          type: mariadb
+      bindings:
+        - name: puzzle-base
+          type: migration
+          data_version: '1.0.1'

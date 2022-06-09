@@ -21,6 +21,8 @@ service:
         type: integer
         value: 96
         example: 96
+      - name: common
+        source: application
     bindings:
       - name: SECRET_KEY_BASE
         type: env
@@ -28,3 +30,8 @@ service:
       - name: JWT_EXPIRATION_HOUR
         type: env
         value: ${parameters:jwt-expiration-hour}
+      - name: puzzle-base
+        type: migration
+        command: rails db:migrate && rails db:seed
+        env:
+          DATABASE_URL: \${parameters:database.mariadb:url[admin]}
