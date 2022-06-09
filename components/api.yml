@@ -35,4 +35,4 @@ service:
         command: rails db:migrate && rails db:seed
         data_version: '1.0.1'
         env:
-          DATABASE_URL: \${parameters:database.mariadb:url[admin]}
+          DATABASE_URL: ${parameters:database.mariadb:url[admin]}
