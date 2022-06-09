@@ -8,6 +8,8 @@ service:
       - type: mariadb
         name: database
       - name: http-server
+        options:
+          routes: ['pixswap-api']
     parameters:
       - name: secret-key-base
         type: literal
