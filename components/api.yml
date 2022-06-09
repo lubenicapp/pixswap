@@ -22,6 +22,7 @@ service:
         value: 96
         example: 96
       - name: common
+        type: migration
         source: application
     bindings:
       - name: SECRET_KEY_BASE
