@@ -18,4 +18,9 @@ Rails.application.routes.draw do
 
   post '/sign_in', to: 'tokens#sign_in'
   post '/sign_out', to: 'tokens#sign_out'
+
+  get 'ping' => proc { |_env|
+    [200, {}, ['pong']]
+  }
+
 end
