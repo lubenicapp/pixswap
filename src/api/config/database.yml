@@ -6,13 +6,9 @@
 #
 default: &default
   adapter: mysql2
-  database: pixswap
-  host: 127.0.0.1
-  username: joe
-  password: taxi
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  reconnect: true
 
 development:
   <<: *default
