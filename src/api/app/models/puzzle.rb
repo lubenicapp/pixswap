@@ -55,6 +55,7 @@ class Puzzle < ApplicationRecord
     self.current ||= start
     self.status ||= 'unsolved'
     self.move_count ||= 0
+    self.pair = "#{start}#{goal}"
   end
 
   def move(params)

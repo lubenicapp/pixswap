@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_10_074955) do
-  create_table "puzzles", charset: "utf8mb4", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_06_10_133402) do
+  create_table "puzzles", charset: "utf8mb3", force: :cascade do |t|
     t.integer "minimum_moves"
     t.integer "best_score"
     t.string "start"
@@ -21,10 +21,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_074955) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "move_count"
-    t.index ["start", "goal"], name: "index_puzzles_on_start_and_goal", unique: true
+    t.string "pair", default: ""
+    t.index ["pair"], name: "index_puzzles_on_pair", unique: true
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.integer "token_revision", default: 0
