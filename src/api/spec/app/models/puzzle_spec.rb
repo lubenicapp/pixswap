@@ -3,7 +3,12 @@
 require 'rails_helper'
 
 describe Puzzle, type: :model do
+  DatabaseCleaner.strategy = :transaction
   subject(:puzzle) { build(:puzzle, **attributes) }
+
+  after(:each) do
+    DatabaseCleaner.clean
+  end
 
   let(:attributes) {
     { start: "1111100000111110000011111",
@@ -164,6 +169,37 @@ describe Puzzle, type: :model do
       it 'offsets the given column by one' do
         shift_column_down
         expect(puzzle.current).to eq("1101100100000000000000000")
+      end
+    end
+  end
+
+  describe 'model validation' do
+
+    context 'when attempting to create a puzzle with same start and goal' do
+      it 'does fails' do
+        p = Puzzle.new
+        p.start = "11111111110000000000111111"
+        p.goal = "1111100000111110000011111"
+        p.save
+
+        b = Puzzle.new
+        b.start = p.start
+        b.goal = "1111100000111110000011111"
+        expect(b.save).to eq(false)
+      end
+    end
+
+    context 'when attempting to create a puzzle with same start and different goal' do
+      it 'does fails' do
+        p = Puzzle.new
+        p.start = "11111111110000000000111111"
+        p.goal = "1111100000111110000011111"
+        p.save
+
+        b = Puzzle.new
+        b.start = p.start
+        b.goal = "1110011000111110000011111"
+        expect(b.save).to eq(false)
       end
     end
   end

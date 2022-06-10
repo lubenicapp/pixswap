@@ -30,6 +30,8 @@ class ValidatePositionsAreDifferent < ActiveModel::Validator
   end
 end
 
+
+
 class Puzzle < ApplicationRecord
   before_save :default_values
 
@@ -38,7 +40,8 @@ class Puzzle < ApplicationRecord
 
   validates :start,
             presence: true,
-            length: { is: MATRIX_SIZE**2, allow_nil: false }
+            length: { is: MATRIX_SIZE**2, allow_nil: false },
+            uniqueness: { scope: :goal }
   validates :goal,
             presence: true,
             length: { is: MATRIX_SIZE**2, allow_nil: false }
