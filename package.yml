@@ -3,7 +3,7 @@ package:
   name: pixswap
   label: Pisxwap
   description: Puzzles api
-  version: 1.1.0
+  version: 1.1.1
   dependencies: []
 application:
   use_store: true
