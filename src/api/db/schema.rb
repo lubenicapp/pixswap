@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_10_133402) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_06_083034) do
   create_table "puzzles", charset: "utf8mb3", force: :cascade do |t|
     t.integer "minimum_moves"
     t.integer "best_score"
@@ -21,8 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_133402) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "move_count"
-    t.string "pair", default: ""
-    t.index ["pair"], name: "index_puzzles_on_pair", unique: true
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
