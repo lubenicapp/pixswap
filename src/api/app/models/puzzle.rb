@@ -40,12 +40,12 @@ class Puzzle < ApplicationRecord
 
   validates :start,
             presence: true,
-            length: { is: MATRIX_SIZE**2, allow_nil: false },
-            uniqueness: { scope: :goal }
+            length: { is: MATRIX_SIZE**2, allow_nil: false }
   validates :goal,
             presence: true,
             length: { is: MATRIX_SIZE**2, allow_nil: false }
 
+  validates_uniqueness_of :start, :score => [:goal]
   validates_with ValidateFeasibility
   validates_with ValidateStringValidity
   validates_with ValidatePositionsAreDifferent
